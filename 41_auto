@@ -1,0 +1,60 @@
+#!/bin/bash
+
+red="\033[1;31m"
+yellow="\033[1;33m"
+blue="\033[1;34m"
+white="\033[1;37m"
+transparent="\e[0m"
+
+notify-send "Starting The Script..." 
+sleep 2
+echo -e "\n\t\t"$white"Welcome To C-Auto_Compiler\n"
+sleep 1
+echo -e "\t\tCoded By 0x41\n"
+sleep 1
+echo -e "\t\tCoded With Love Using BASH"$transparent"\n"
+sleep 1
+
+read -p "Enter File Location: " file_loc
+read -p "Enter File Name[No .c]: " file_name
+read -p "Enter Time-Gap In Seconds: " time_gap
+
+function main()
+{
+    while true
+    do
+    {
+        cd $file_loc
+        sleep 2
+        if [ "`grep -i "math.h" $file_name.c`" == "#include <math.h>" ] || [ "`grep -i "math.h" $file_name.c`" == "#include<math.h>" ]
+        then
+        {
+            echo -e "\n"$red"Following Header Files Were Included"$transparent""
+            sleep 1.5
+            grep -i "#include" $file_name.c
+            sleep 1.5
+            gcc $file_name.c -o $file_name -lm
+            echo -e "\n"
+            echo -e "\t\t"$blue"Executing file\n\n"$transparent""
+            
+            ./$file_name
+        }
+        else
+        {
+            echo -e "\n"$red"Following Header Files Were Included"$transparent""
+            sleep 1.5
+            grep -i "include" $file_name.c
+            sleep 1.5
+            gcc $file_name.c -o $file_name 
+            echo -e "\n"
+            echo -e "\t\t"$blue"Executing file\n\n"$transparent""
+            
+            ./$file_name
+        }
+        fi
+        sleep $time_gap
+        clear
+    }
+    done
+}
+main
