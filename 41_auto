@@ -8,7 +8,7 @@ transparent="\e[0m"
 
 notify-send "Starting The Script..." 
 sleep 2
-echo -e "\n\t\t"$white"Welcome To C-Auto_Compiler\n"
+echo -e "\n\t\t"$red"Welcome To C-Auto_Compiler\n"
 sleep 1
 echo -e "\t\tCoded By 0x41\n"
 sleep 1
@@ -54,6 +54,7 @@ function main()
         fi
         sleep $time_gap
         clear
+        rm $file_name
     }
     done
 }
